@@ -14,7 +14,7 @@ This plugin is a tool that will generate Avicus-ready YAML from regions and inve
 &nbsp;&nbsp;&nbsp;&nbsp;`potion`&nbsp;&nbsp; - Generate a YAML list from the effects in the potion you are holding.     
    
 &nbsp;&nbsp;__NOTE:__ All regons are session-based and saved in your personal region cache.    
-&nbsp;&nbsp;`region`&nbsp;&nbsp;&nbsp;&nbsp; - Region parent comand, all commands involving regions should be prefixed with this.     
+&nbsp;&nbsp;`region`&nbsp;&nbsp;&nbsp;&nbsp; - Region parent command, all commands involving regions should be prefixed with this.     
 &nbsp;&nbsp;&nbsp;&nbsp;`cuboid`&nbsp;&nbsp; - Generate a cuboid based on the current WorldEdit selection.   
 &nbsp;&nbsp;&nbsp;&nbsp;`cylinder` - Generate a cylinder based on your current position.   
 &nbsp;&nbsp;&nbsp;&nbsp;`sphere`&nbsp;&nbsp; - Generate a sphere based on your current position.   
