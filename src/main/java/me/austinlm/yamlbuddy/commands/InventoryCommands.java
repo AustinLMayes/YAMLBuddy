@@ -25,7 +25,7 @@ public class InventoryCommands {
         }
     }
 
-    @Command(aliases = "all", desc = "Generate a loadout from your hotbar.", flags = "s")
+    @Command(aliases = "all", desc = "Generate a loadout from your inventory.", flags = "s")
     public static void all(final CommandContext args, CommandSender sender) throws Exception {
         if (!(sender instanceof Player)) throw new CommandException("You must be a player to use this command!");
 

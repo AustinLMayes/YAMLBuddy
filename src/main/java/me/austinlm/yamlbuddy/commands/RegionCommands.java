@@ -91,7 +91,7 @@ public class RegionCommands {
     public static void sendInfoMessage(CommandSender sender) {
         sender.sendMessage(ChatColor.GREEN + "Success! Your region has been saved to your " + ChatColor.GOLD + ChatColor.BOLD + "PERSONAL " + ChatColor.GREEN + "cache.");
         sender.sendMessage(ChatColor.BLUE + "To upload you regions to DPaste, type " + ChatColor.AQUA + "/yamlbuddy region upload " + ChatColor.ITALIC + "(Use -s to keep your regions in the cache after upload)" + ChatColor.BLUE + ".");
-        sender.sendMessage(ChatColor.GOLD + "\u25BA" + ChatColor.RED + ChatColor.BOLD + "WARNING: " + ChatColor.DARK_PURPLE + "Your regions will be cleared of you log out." + ChatColor.GOLD + "\u25C0");
+        sender.sendMessage(ChatColor.GOLD + "\u25BA" + ChatColor.RED + ChatColor.BOLD + "WARNING: " + ChatColor.DARK_PURPLE + "Your regions will be cleared if you log out." + ChatColor.GOLD + "\u25C0");
     }
 
 }
