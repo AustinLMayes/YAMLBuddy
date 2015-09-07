@@ -5,6 +5,7 @@ import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.minecraft.util.commands.CommandContext;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.minecraft.util.commands.NestedCommand;
+import me.austinlm.yamlbuddy.actions.InventoryActions;
 import me.austinlm.yamlbuddy.utils.InventoryUtils;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -29,53 +30,27 @@ public class InventoryCommands {
     public static void all(final CommandContext args, CommandSender sender) throws Exception {
         if (!(sender instanceof Player)) throw new CommandException("You must be a player to use this command!");
 
-        HashMap<Object, Object> res = Maps.newHashMap();
-        for (Map.Entry<Integer, ItemStack> entry : InventoryUtils.inventoryToMap((Player) sender).entrySet()) {
-            res.putAll(InventoryUtils.itemDataToYAMLMap(entry.getValue(), entry.getKey()));
-        }
-
-        res.putAll(InventoryUtils.convertArmor((Player) sender));
-
-        YamlConfiguration conf = new YamlConfiguration();
-        conf.set("loadout", res);
-        sender.sendMessage(conf.saveToString());
+        InventoryActions.all((Player) sender);
     }
 
     @Command(aliases = "hotbar", desc = "Generate a loadout from your hotbar.", flags = "s")
     public static void hotbar(final CommandContext args, CommandSender sender) throws Exception {
         if (!(sender instanceof Player)) throw new CommandException("You must be a player to use this command!");
 
-        HashMap<Object, Object> res = Maps.newHashMap();
-        for (Map.Entry<Integer, ItemStack> i : InventoryUtils.getHotbarItems((Player) sender).entrySet()) {
-            res.putAll(InventoryUtils.itemDataToYAMLMap(i.getValue(), i.getKey()));
-        }
-
-        YamlConfiguration conf = new YamlConfiguration();
-        conf.set("loadout", res);
-        sender.sendMessage(conf.saveToString());
+        InventoryActions.hotbar((Player) sender);
     }
 
     @Command(aliases = "armor", desc = "Generate a loadout from the armor you are wearing.", flags = "s")
     public static void armor(final CommandContext args, CommandSender sender) throws Exception {
         if (!(sender instanceof Player)) throw new CommandException("You must be a player to use this command!");
 
-        HashMap<Object, Object> res = InventoryUtils.convertArmor((Player) sender);
-
-        YamlConfiguration conf = new YamlConfiguration();
-        conf.set("loadout", res);
-        sender.sendMessage(conf.saveToString());
+        InventoryActions.armor((Player) sender);
     }
 
     @Command(aliases = "potion", desc = "Generate a YAML list from the effects in the potion you are holding", flags = "s")
     public static void potion(final CommandContext args, CommandSender sender) throws Exception {
         if (!(sender instanceof Player)) throw new CommandException("You must be a player to use this command!");
 
-        if (((Player) sender).getItemInHand().getType() != Material.POTION) throw new CommandException("You must be holding a potion!");
-
-        List<String> effects = InventoryUtils.potionEffectToYAMLString(((Player) sender).getItemInHand());
-
-        YamlConfiguration conf = new YamlConfiguration();
-        conf.set("effects", effects);
-        sender.sendMessage(conf.saveToString());
+        InventoryActions.potion((Player) sender);
     }
 }

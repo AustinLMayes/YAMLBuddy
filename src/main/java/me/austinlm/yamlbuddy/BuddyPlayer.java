@@ -3,16 +3,18 @@ package me.austinlm.yamlbuddy;
 import com.google.common.collect.Maps;
 import com.sk89q.minecraft.util.commands.CommandException;
 import me.austinlm.yamlbuddy.utils.PasteUtils;
+import net.njay.player.MenuPlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public class BuddyPlayer {
+public class BuddyPlayer extends MenuPlayer {
     private Player bukkit;
     private HashMap<String, Object> currentYaml = Maps.newHashMap();
 
     public BuddyPlayer(Player bukkit) {
+        super(bukkit);
         this.bukkit = bukkit;
     }
 

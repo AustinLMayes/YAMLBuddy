@@ -5,12 +5,17 @@ import com.sk89q.minecraft.util.commands.*;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import me.austinlm.yamlbuddy.commands.InventoryCommands;
 import me.austinlm.yamlbuddy.commands.RegionCommands;
+import me.austinlm.yamlbuddy.menu.MainMenu;
+import net.njay.MenuFramework;
+import net.njay.MenuRegistry;
+import net.njay.player.MenuPlayer;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +35,11 @@ public class YAMLBuddy extends JavaPlugin {
         registerListeners();
 
         // Other
+        setupMenus();
+    }
+
+    private void setupMenus() {
+        MenuFramework.enable(new MenuRegistry(this, MainMenu.class), new PlayerManager());
     }
 
     @Override
@@ -85,8 +95,19 @@ public class YAMLBuddy extends JavaPlugin {
 
     public static class ParentCommand {
         @com.sk89q.minecraft.util.commands.Command(aliases = {"yamlbuddy", "avicusyamlbuddy"}, desc = "All YAMLBuddy commands.")
-        @NestedCommand({InventoryCommands.InventoryParentCommand.class, RegionCommands.RegionParentCommand.class})
+        @NestedCommand({MenuCommand.class, InventoryCommands.InventoryParentCommand.class, RegionCommands.RegionParentCommand.class})
         public static void command() {
+        }
+    }
+
+    public static class MenuCommand {
+        @com.sk89q.minecraft.util.commands.Command(aliases = {"menu"}, desc = "Open the GUI.")
+        public static void menu(CommandContext args, CommandSender sender) throws Exception {
+            if (!(sender instanceof Player)) throw new CommandException("Only players can open GUIs!");
+
+            MenuPlayer player = MenuFramework.getPlayerManager().getPlayer((Player) sender);
+
+            player.setActiveMenu(new MainMenu(player.getMenuManager(), null));
         }
     }
 
