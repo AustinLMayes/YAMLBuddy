@@ -1,6 +1,6 @@
-###AvicusYAMLBuddy###
+###LifeBoatYAMLBuddy###
 
-This plugin is a tool that will generate Avicus-ready YAML from regions and inventories.
+This plugin is a tool that will generate LB-ready YAML from regions and inventories.
 
 ####Requirements####
 - _WorldEdit_
